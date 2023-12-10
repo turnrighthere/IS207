@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTH Bài 3</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    #reset {
+      background-color: rgb(109, 109, 57);
+    }
+  </style>
+  <script>
+    $(document).ready(function() {
+      $("#submit").click(function() {
+        var masp = $("#masp").val();
+        var tensp = $("#tensp").val();
+        var nuocsx = $("#nuocsx").val();
+        var dvt = $("#dvt").val();
+        var gia = $("#gia").val();
+        var lsp = $("#lsp").val();
+        var hinhanh = $("#hinhanh").val();
+
+        if (masp == "" || tensp == "" || nuocsx == "" || dvt == "" || gia == "" || lsp == "" || hinhanh == "") {
+          alert("Hãy điền đủ thông tin");
+          return;
+        }
+
+        console.log('toi dang o day');
+        $.ajax({
+          type: "POST",
+          url: "bai3.php",
+          data: {
+            masp: masp,
+            tensp: tensp,
+            nuocsx: nuocsx,
+            dvt: dvt,
+            gia: gia,
+            lsp: lsp,
+            hinhanh: hinhanh
+          },
+          success: function(response) {
+            if (response == "success") {
+              alert("Thêm sản phẩm thành công");
+              $("#masp").val("");
+              $("#tensp").val("");
+              $("#nuocsx").val("");
+              $("#dvt").val("");
+              $("#gia").val("");
+              $("#lsp").val("");
+              $("#hinhanh").val("");
+            } else {
+              alert("Thêm sản phẩm không thành công");
+            }
+          }
+        });
+      });
+
+      $("#reset").click(function() {
+        $("#masp").val("");
+        $("#tensp").val("");
+        $("#nuocsx").val("");
+        $("#dvt").val("");
+        $("#gia").val("");
+        $("#lsp").val("");
+        $("#hinhanh").val("");
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <form class="form-horizontal">
+    <fieldset>
+      <!-- Form Name -->
+      <h1>Thêm sản phẩm</h1>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="masp">Mã sản phẩm</label>
+        <div class="col-md-4">
+          <input id="masp" name="masp" placeholder="Mã sản phẩm" class="form-control input-md" required="" type="text">
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="tensp">Tên sản phẩm</label>
+        <div class="col-md-4">
+          <input id="tensp" name="tensp" placeholder="Tên sản phẩm" class="form-control input-md" required=""
+            type="text">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nuocsx">Nước sản xuất</label>
+        <div class="col-md-4">
+          <input id="nuocsx" name="nuocsx" placeholder="Nước sản xuất" class="form-control input-md" required=""
+            type="text">
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="dvt">Đơn vị tính</label>
+        <div class="col-md-4">
+          <input id="dvt" name="dvt" placeholder="Đơn vị tính" class="form-control input-md" required="" type="text">
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="gia">Giá</label>
+      <div class="col-md-4">
+        <input id="gia" name="gia" placeholder="Giá" class="form-control input-md" required="" type="number">
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="lsp">Loại sản phẩm</label>
+      <div class="col-md-4">
+        <input id="lsp" name="lsp" placeholder="Loại sản phẩm" class="form-control input-md" required="" type="text">
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="hinhanh">Hình ảnh</label>
+      <div class="col-md-4">
+        <input id="hinhanh" name="hinhanh" placeholder="Đường dẫn hình ảnh" class="form-control input-md" required=""
+          type="text">
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="submit"></label>
+      <div class="col-md-4">
+        <button id="submit" name="submit" class="btn btn-primary">Thêm</button>
+        <button id="reset" name="reset" class="btn btn-danger">Reset</button>
+      </div>
+    </div>
+
+    </fieldset>
+  </form>
+</body>
+
+</html>

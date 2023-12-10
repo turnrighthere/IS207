@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTH Bài 2</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function getSp() {
+            var sp = document.getElementById("sp").value;
+
+            if (sp == "") {
+                alert("Please select a category");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "bai2.php",
+                data: { sp: sp },
+                success: function (response) {
+                    $("#spBody").html(response);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <select name="sp" id="sp" onchange="getSp()">
+        <option value="">Chọn sản phẩm</option>
+        <option value="all">Chọn tất cả sản phẩm</option>
+        <option value="but">Sản phẩm bút</option>
+        <option value="phan">Sản phẩm phấn</option>
+        <option value="bang">Sản phẩm bảng</option>
+        <option value="tap">Sản phẩm tập</option>
+    </select>
+    <br><br>
+    <div id="spTable">
+        <div id="spBody">
+        </div>
+    </div>
+</body>
+
+</html>
