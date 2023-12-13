@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTH Bài 7</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function getSp() {
+            var sp = document.getElementById("search").value;
+
+
+            $.ajax({
+                type: "POST",
+                url: "bai7.php",
+                data: { sp: sp },
+                success: function (response) {
+                    $("#spBody").html(response);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" class="form-control" id="search" oninput="getSp()" placeholder="Nhập tên sản phẩm">
+        <div id="spBody"></div>
+    </div>
+</body>
+
+</html>
